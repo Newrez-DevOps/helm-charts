@@ -8,6 +8,7 @@ spec:
   selfSigned: {}
 
 ---
+{{- if .Values.letsencrypt.createClusterIssuer }}
 # Let's encrypt production issuer
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
@@ -31,7 +32,7 @@ spec:
               annotations:
                 traefik.ingress.kubernetes.io/router.entrypoints: websecure
                 traefik.ingress.kubernetes.io/router.tls: "true"
-
+{{- end }}
 ---
 # Private CA (epinio-ca) issuer
 apiVersion: cert-manager.io/v1
