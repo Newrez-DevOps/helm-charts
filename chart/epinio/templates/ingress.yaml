@@ -6,6 +6,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: {{ .Values.ingress.nginxSSLRedirect | quote }}
     nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    cert-manager.io/cluster-issuer: letsencrypt-production
     {{- range $key, $value := .Values.ingress.annotations }}
     {{ $key | quote }}: {{ $value | quote }}
     {{- end }}
